@@ -1,10 +1,12 @@
 ---
-mathjax: true
+katex: true
 title: 功能测试
 date: 2020-05-19 18:49:55
 toc: true
 tags:
- - 测试
+  - 测试
+categories:
+  - 随便写写
 ---
 
 这是一个一级标题
