@@ -1,7 +1,7 @@
 ##########################################
 # Site Settings
 
-baseURL = "https://blog.minys.online"
+baseURL = "https://minys233.github.io"
 title = "Minys's blog"
 languageCode = "en_US"
 hasCJKLanguage = false
@@ -98,7 +98,7 @@ uglyURLs = false
     # Email
     email = "minys@foxmail.com"
     # Motto or introduction
-    motto = "Viva La Vida"
+    motto = "Record my ordinary life"
     # Avatar
     avatar = "/icons/apple-touch-icon.png"
     # Personal website, default: baseURL
