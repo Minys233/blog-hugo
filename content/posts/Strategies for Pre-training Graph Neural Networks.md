@@ -2,16 +2,17 @@
 title: "Strategies for Pre Training Graph Neural Networks"
 date: 2020-05-20T15:26:23+08:00
 draft: true
+summary: 读后总结，刊于ICLR 2020
 toc: true
 katex: true
 tags:
-	- Graph Neural Network (GNN)
-	- Machine Learning
+- Graph Neural Network (GNN)
+- Machine Learning
 categories:
-	- 文献阅读
+- 文献阅读
 ---
 
-##问题提出
+## 问题提出
 
 文章首先提出迁移学习在CV与NLP中已经应用广泛了，但在图数据上相应的预训练的工作还比较少。预训练主要解决目前图数据集的两个问题：
 
@@ -38,7 +39,7 @@ categories:
 
 **Context prediction.**对每一个节点 $v$ ， $K$-hop 邻居指该节点出发最多 $K$-hop 以内的所有节点和边。也即是一个常见的 $K$ 层GNN能够搜集信息的范围，对应节点的表示向量 $h_v^{(K)}$ 则取决于它的 $K$-hop 邻居。Context graph 表示一些节点 $v$ 的邻居结构。它由两个参数 $r_1, r_2$ 控制。对于节点 $v$，表示由所有与 $v$ 距离 $r_1$-hop 和 $r_2$-hop 之间的节点和边所构成的子图，可近似看做一个环形区域。令 $r_1 < K$，并将 $K$-hop 邻居和Context graph的交集被称为Context anchor nodes。这一任务如上图(a)所示，第一步先使用一个辅助GNN'来得到Context graph中的节点向量表示，并对Context anchor nodes的表示求平均，得到绿色的向量，对于图 $G$ 中的节点 $v$ ，这样得到的向量为 $c_v^G$。第二步，用主GNN在 $K$-hop 邻居组成的子图上得到 $v$ 的表示 $h_v^{(K)}$。预训练的目标即为：
 $$
-\sigma(h_v^{(K)}\cdot c_{v'}^G) \approx 1 \;\;\text{if $v$ and $v'$ are same node}
+\sigma(h_v^{(K)}\cdot c_{v'}^G) \approx 1 \\;\\;\text{if $v$ and $v'$ are same node}
 $$
 $\sigma(\cdot)$ 表示$\text{Sigmoid}$函数。第三部，在训练中使用negative sampling，控制 $v'=v$ 或 $G'=G$，让正负样本比例为1。这实际上是要学到图的拓扑结构。
 
@@ -48,7 +49,7 @@ $\sigma(\cdot)$ 表示$\text{Sigmoid}$函数。第三部，在训练中使用neg
 
 图 $G$ 的向量表示 $h_G$ 下游任务进行微调训练时候直接使用的特征，我们应当让这类特征包含相关的领域知识。作者提出，使用图级别多任务有监督预训练（graph-level multi-task supervised pre-training）来同时预测同一个图的多个标签。但是，如果只是单纯的这样训练，如果预训练的任务与下游任务相关性不强或，则可能出现负迁移的现象。因此，作者认为图的预训练仅仅提供了图层面上的监督，即使节点表示学的很好，但图表示很可能在预训练阶段由于各种原因是没那么有意义的。因此，作者表示要缓解这个问题，就要先进行节点预训练，再进行图的预训练[^2]。另外，作者还说可以用图网络预测图之间的相似性来进行图的预训练。然而他说这个复杂度太高，他不做。
 
-### 实验和结果
+## 实验和结果
 
 实验分别在化学任务和生物学任务上进行预训练效果测试。预训练数据来源是ZINC15，只在其中选了2百万个分子[^3]。详细数据和方法略去，仅介绍结果。
 
