@@ -1,8 +1,8 @@
 ---
-katex: true
 title: 功能测试
 date: 2020-05-19 18:49:55
 toc: true
+Mathjax: true
 tags:
   - 测试
 categories:
@@ -15,16 +15,16 @@ categories:
 ------------------------
 
 # 数学公式
-简单公式
+简单公式$A+B=C$这是行内公式
 $$ a^2 + b^2 = c^2$$
 
 $$x=\frac{-b\pm\sqrt{4ac}}{2a}$$
 复杂公式
 $$
-\begin{align}
+\begin{aligned}
 \mathcal{L} ( \mu ,\sigma^2 ) &= \prod_{i = 1}^n \left\lbrace  \frac{1}{\sqrt{2 \pi} \sigma } \text{exp} \left\lbrace - \frac{( x_i - \mu)^2}{2 \sigma^2}\right\rbrace \right\rbrace ,\\\\
 &= (2 \pi \sigma^2)^{- \frac{n}{2}} \text{exp} \left\lbrace - \frac{1}{2 \sigma^2} \sum_{i = 1}^{n} (x_i - \mu)^2 \right\rbrace .
-\end{align}
+\end{aligned}
 $$
 
 # 公式作为TOC项目
