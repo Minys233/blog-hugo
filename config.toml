@@ -22,7 +22,7 @@ defaultContentLanguageInSubdir = false
 pluralizeListTitles = false
 
 # The length of text in words to show in summary
-summaryLength = 10
+summaryLength = 150
 
 # Enable Emoji emoticons support?
 enableEmoji = true
@@ -102,7 +102,7 @@ uglyURLs = false
     # Avatar
     avatar = "/icons/apple-touch-icon.png"
     # Personal website, default: baseURL
-    website = ""
+    website = "blog.minys.online"
     # Twitter
     # twitter = ""
 
@@ -268,12 +268,12 @@ uglyURLs = false
     # Brand Bar (inside header)
 
     # Use SVG?
-    siteBrandSVG = false
+    siteBrandSVG = true
     # If true, put your SVG in the `SVG.toml`
     # file and configure the following options.
     # Unit: px
-    siteBrandSVGWidth = 250
-    siteBrandSVGHeight = 100
+    siteBrandSVGWidth = 50
+    siteBrandSVGHeight = 50
     siteBrandSVGFill = "#fff"
     # If false, your site title will be
     # used as the default and displayed as
@@ -296,7 +296,7 @@ uglyURLs = false
     # Note: invalid for header layout flex
 
     # Highlight current menu item by section?
-    activeInSection = false
+    activeInSection = true
     # Note: if true, the menu item in the
     #       post page will be highlighted
     #       also if that post’s section is
@@ -834,7 +834,7 @@ uglyURLs = false
 
     enableCaption = true
 
-    captionPrefix = "◎ "
+    captionPrefix = "👉 "
 
 
     ######################################
@@ -919,28 +919,28 @@ uglyURLs = false
     #       brand.
 
     # Site brand
-    fontFamilySiteBrand = ""
+    fontFamilySiteBrand = "'Liu Jian Mao Cao', cursive"
     # Menu bar
     fontFamilyMenu = ""
     # Post title, post subtitle, list title, year and month title of the list, related posts title, previous/next post title, header of table, term/name in a definition list
-    fontFamilyTitle = "'Comfortaa', sans-serif"
+    fontFamilyTitle = "'Comfortaa', 'Cinzel Decorative', 'Noto Serif SC', sans-serif"
     # Headings, toc title
-    fontFamilyHeadings = "'Comfortaa', sans-serif"
+    fontFamilyHeadings = "'Comfortaa', 'Cinzel Decorative', 'Noto Serif SC', sans-serif"
     # Code, superscript, post meta info, post updated badge, post gitinfo, minimal footer, busuanzi site view counter
-    fontFamilyCode = "'Source Code Pro', monospace"
+    fontFamilyCode = "'Source Code Pro', 'Noto Serif SC', monospace"
     # Blockquotes
-    fontFamilyQuote = ""
+    fontFamilyQuote = "'EB Garamond', 'STKaiti', 'KaiTi', 'SimKai', 'Noto Serif SC', serif"
     # Table of contents
     fontFamilyTOC = ""
     # Caption
     fontFamilyCaption = ""
     # Footer
-    fontFamilyFooter = ""
+    fontFamilyFooter = "'Ma Shan Zheng', cursive"
     # Body
-    fontFamilyBody = "'IBM Plex Serif', serif"
+    fontFamilyBody = "'EB Garamond', 'Noto Serif SC', serif"
 
     # Embed fonts link
-    fontsLink = "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@700&display=swap"
+    fontsLink = "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Comfortaa&family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Liu+Jian+Mao+Cao&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     # Note: In order for the reader to
     #       experience the fonts you set,
     #       it is best to use web fonts.
@@ -954,7 +954,7 @@ uglyURLs = false
     ######################################
     ## Font Size (unit: px)
 
-    fontSize = 20
+    fontSize = 18
 
     ######################################
     ## Tab Size
@@ -964,7 +964,7 @@ uglyURLs = false
     ######################################
     ## Line Height
 
-    lineHeight = 1.618
+    lineHeight = 2
     # Note: apply to post paragraph & toc
     #       only
 
@@ -973,7 +973,7 @@ uglyURLs = false
 
     enableParagraphIndent = true
 
-    indentFirstParagraph = false
+    indentFirstParagraph = true
     # Note: *global settings*
     #       `indentFirstParagraph` in post’s Front Matter
     #       has a higher priority than here
@@ -1030,7 +1030,7 @@ uglyURLs = false
     # Note: new Markdown syntax created by MemE
     #       `..文本..`
 
-    enableEmphasisPoint = false
+    enableEmphasisPoint = true
 
     ######################################
     ## Chinese Punctuation Glyph Correction
@@ -1162,7 +1162,7 @@ uglyURLs = false
     ######################################
     # Minimal Footer
 
-    enableMinimalFooter = false
+    enableMinimalFooter = true
     enableVerticalBarStructure = false
     # Note: If you enable this, the
     #       categories or sections that
