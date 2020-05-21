@@ -4,7 +4,7 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 # delete fucking DS_Store
 rm **/.DS_Store
 # Build the project.
-hugo # -t meme # if using a theme, replace with `hugo -t <YOURTHEME>`
+hugo -t meme # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
 cd public
