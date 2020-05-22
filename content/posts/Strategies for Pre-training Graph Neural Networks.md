@@ -2,7 +2,6 @@
 title: "Strategies for Pre Training Graph Neural Networks"
 date: 2020-05-20T15:26:23+08:00
 summary: 读后总结，刊于ICLR 2020
-toc: true
 katex: true
 tags:
 - Graph Neural Network (GNN)
