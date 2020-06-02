@@ -3,7 +3,7 @@
 
 baseURL = "https://minys233.github.io"
 title = "Minys's blog"
-languageCode = "en_US"
+languageCode = "en"
 hasCJKLanguage = true
 # Copyright information (Markdown supported)
 copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
@@ -15,14 +15,14 @@ theme = "meme"
 newContentEditor = ""
 
 # i18n
-defaultContentLanguage = "en_US"
+defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
 # Pluralize titles in lists?
 pluralizeListTitles = false
 
 # The length of text in words to show in summary
-summaryLength = 150
+summaryLength = 42
 
 # Enable Emoji emoticons support?
 enableEmoji = true
@@ -136,10 +136,15 @@ uglyURLs = false
     mediaType = "application/rss+xml"
     baseName = "rss"
 
+# Search index for lunr.js
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
+
 # Hugo’s output control
 [outputs]
     page = ["HTML"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     section = ["HTML"]
     # Taxonomy
     taxonomyTerm = ["HTML"]
@@ -189,12 +194,12 @@ uglyURLs = false
 
 [menu]
     ## Menu bar
-    [[menu.main]]
-        url = "/"
-        name = "首页"
-        weight = 1
-        pre = "internal"
-        post = "home"
+    # [[menu.main]]
+    #     url = "/"
+    #     name = "首页"
+    #     weight = 1
+    #     pre = "internal"
+    #     post = "home"
     [[menu.main]]
         url = "/posts/"
         name = "归档"
@@ -225,6 +230,10 @@ uglyURLs = false
     [[menu.main]]
         weight = 7
         identifier = "lang-switcher"
+    [[menu.main]]
+        weight = 8
+        identifier = "search"
+        post = "search"
 
 
 
@@ -245,15 +254,6 @@ uglyURLs = false
 
     headerLayout = "flex"
     # Note: center or flex
-
-    headerFallbackWidth = "32em"
-    # Note: by default, MemE uses main-inner’s
-    #       width for `headerWidth`, but in
-    #       some pages (e.g. homepage layout
-    #       poetry, footage), there is no
-    #       main-inner, so you need to give
-    #       a fallback value for this
-    #       situation.
 
     # Hide menu bar and display a toggle
     # on narrow screen?
@@ -341,7 +341,7 @@ uglyURLs = false
     siteLogo = "/icons/apple-touch-icon.png"
     # Note: used for JSON-LD, Open Graph
 
-    siteDescription = "siteDescription"
+    siteDescription = "Minys's blog - Record my ordinary life"
     # Note: used for HTML head meta, JSON-LD,
     #       Open Graph, Atom, RSS
 
@@ -349,7 +349,7 @@ uglyURLs = false
     # ATTENTION: keep this format, change
     #            the number
 
-    siteTwitter = "reuixiy"
+    siteTwitter = ""
     # Note: used for Twitter Cards
 
 
@@ -421,7 +421,7 @@ uglyURLs = false
     ######################################
     # List Page
 
-    listWidth = 30
+    listWidth = 39
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -714,7 +714,7 @@ uglyURLs = false
     #            supported
 
     # The content width of the post
-    postWidth = 32
+    postWidth = 39
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -964,7 +964,7 @@ uglyURLs = false
     ######################################
     ## Line Height
 
-    lineHeight = 2
+    lineHeight = 1.618
     # Note: apply to post paragraph & toc
     #       only
 
@@ -1162,7 +1162,7 @@ uglyURLs = false
     ######################################
     # Minimal Footer
 
-    enableMinimalFooter = true
+    enableMinimalFooter = false
     enableVerticalBarStructure = false
     # Note: If you enable this, the
     #       categories or sections that
@@ -1294,6 +1294,16 @@ uglyURLs = false
 
     enableInstantPage = true
     # Note: https://github.com/instantpage/instant.page
+
+
+    ######################################
+    # Lunr search
+
+    # Note: This requires SearchIndex
+    # output to be enabled.
+
+    enableLunrSearch = true
+    # Note: https://lunrjs.com/
 
 
     ######################################
