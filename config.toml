@@ -4,7 +4,7 @@
 baseURL = "https://minys233.github.io"
 title = "Minys's blog"
 languageCode = "en_US"
-hasCJKLanguage = false
+hasCJKLanguage = true
 # Copyright information (Markdown supported)
 copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
 
