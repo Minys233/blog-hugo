@@ -33,7 +33,7 @@ categories:
 
 ### 树图二合一编码器
 
-图定义为 $G=(\mathcal{V}, \mathcal{E})$. 图中节点 $v$ 具有特征 $\boldsymbol{f}_v$ . 对原子来说, 其中包含了原子类型, 化合价等原子性质. 对junction tree中的节点 (文中称cluster),  $\boldsymbol{f}_v$ 是one-hot向量, 表示其类别. 类似地, 边 $(u,v)\in\mathcal{E}$ 也有对应的特征 $\boldsymbol{f}_{uv}$ . $N(v)$ 表示节点 $v$ 邻居构成的集合. 每条边 $(u,v)$ 有两个隐向量 $\boldsymbol{\nu}_{uv}$, $\boldsymbol{\nu}_{vu}$, 分别表示两个方向传递的消息. 则消息传递网络通过神经网络 $g_1(\cdot)$ 更新图中边上的消息:
+图定义为 $G=(\mathcal{V}, \mathcal{E})$. 图中节点 $v$ 具有特征 $\\boldsymbol{f}_v$ . 对原子来说, 其中包含了原子类型, 化合价等原子性质. 对junction tree中的节点 (文中称cluster),  $\boldsymbol{f}_v$ 是one-hot向量, 表示其类别. 类似地, 边 $(u,v)\in\mathcal{E}$ 也有对应的特征 $\boldsymbol{f}_{uv}$ . $N(v)$ 表示节点 $v$ 邻居构成的集合. 每条边 $(u,v)$ 有两个隐向量 $\boldsymbol{\nu}_{uv}$, $\boldsymbol{\nu}_{vu}$, 分别表示两个方向传递的消息. 则消息传递网络通过神经网络 $g_1(\cdot)$ 更新图中边上的消息:
 $$
 \boldsymbol{\nu}_{uv}^{(t)}=g_1\left(\boldsymbol{f}_u, \boldsymbol{f}_{uv}, \sum_{w\in N(u)\backslash v} \boldsymbol{\nu}_{wu}^{(t-1)}\right)
 $$
