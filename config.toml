@@ -593,7 +593,7 @@ uglyURLs = false
     ######################################
     # KaTeX (chemical equation supported)
 
-    enableKaTeX = true
+    enableKaTeX = false
     # Note: *global settings*
     #       `katex` in post’s Front Matter
     #       has a higher priority than here
@@ -602,7 +602,7 @@ uglyURLs = false
     ######################################
     # MathJax (chemical equation supported)
 
-    enableMathJax = false
+    enableMathJax = true
     # Note: *global settings*
     #       `mathjax` in post’s Front Matter
     #       has a higher priority than here
@@ -613,7 +613,7 @@ uglyURLs = false
     ######################################
     # Mermaid (https://github.com/mermaid-js/mermaid)
 
-    enableMermaid = false
+    enableMermaid = true
     # Note: *global settings*
     #       `mermaid` in post’s Front Matter
     #       has a higher priority than here
