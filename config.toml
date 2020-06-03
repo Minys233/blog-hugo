@@ -1205,12 +1205,12 @@ uglyURLs = false
     iconAnimation = true
 
     # Display links to Hugo and MemE?
-    displayPoweredBy = true
+    displayPoweredBy = false
 
     displaySiteCopyright = true
 
     # Custom Footer (Markdown supported)
-    customFooter = ""
+    customFooter = "<script type=\"text/javascript\" src=\"//rf.revolvermaps.com/0/0/8.js?i=58zyjf5y0q4&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=trebuchet_ms&amp;l=49\" async=\"async\"></script>"
 
     displayBusuanziSiteUVAndPV = false
     busuanziSiteUVText = "Site UV"
