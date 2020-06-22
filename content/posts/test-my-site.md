@@ -66,14 +66,13 @@ class Foo(object):
 
 ## Mermaid
 
-{{< mermaid >}}
-
-pie
-
-​	"Dogs" : 42.96
-
-​	"Cats" : 50.05
-
-​	"Rats" : 10.01
-
+{{<mermaid align="center"  caption="This is a flowchart">}}
+graph LR;
+	A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
 {{< /mermaid >}}
+
+通过shortcode的设置, 当允许图表图例时, 可以通过接收caption参数为mermaid图表加上图例. 但注意要在前后加上空行, 不然这一段就和图表处在同一段了!
+

@@ -1,0 +1,36 @@
+<script>
+  if (typeof MathJax === 'undefined') {
+      window.MathJax = {
+          loader: {
+              load: ['[tex]/ams', '[tex]/mhchem', '[tex]/boldsymbol']
+          },
+          processEscapes: true,
+          processRefs: true,
+          {{ if .Site.Params.disableMathJaxMenu }}
+              options: {
+                  renderActions: {
+                      addMenu: [0, '', '']
+                  }
+              },
+          {{ end }}
+          tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              tags: 'ams',
+              packages: {'[+]': ['ams', 'mhchem', 'boldsymbol']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+      };
+      (function() {
+          var script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+          script.defer = true;
+          script.async = true;
+          document.head.appendChild(script);
+      })();
+  } else {
+      MathJax.texReset();
+      MathJax.typeset();
+  }
+</script>

@@ -1,0 +1,16 @@
+<!--mermaid.html-->
+<div class="mermaid" align="
+{{- if .Get "align" -}}
+    {{- .Get "align" -}}
+{{- else -}}
+    center
+{{- end -}}
+"> 
+    {{ safeHTML .Inner }}
+</div>
+
+{{- if and (.Site.Params.enableCaption) (.Get "caption") -}}
+    {{- $captionPrefix := .Site.Params.captionPrefix -}}
+    <span class="caption">{{- $captionPrefix -}} {{- .Get "caption" -}}</span>
+{{- end -}}
+
