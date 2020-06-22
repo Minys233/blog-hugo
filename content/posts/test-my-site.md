@@ -62,3 +62,18 @@ class Foo(object):
       print(f"this is {self.foo}")
 ```
 
+
+
+## Mermaid
+
+{{< mermaid >}}
+
+pie
+
+​	"Dogs" : 42.96
+
+​	"Cats" : 50.05
+
+​	"Rats" : 10.01
+
+{{< /mermaid >}}
