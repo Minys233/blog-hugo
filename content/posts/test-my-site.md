@@ -76,3 +76,4 @@ graph LR;
 
 通过shortcode的设置, 当允许图表图例时, 可以通过接收caption参数为mermaid图表加上图例. 但注意要在前后加上空行, 不然这一段就和图表处在同一段了!
 
+$*\mathbf{A} \in \mathbb{R}^{B\times N \times N}*$
