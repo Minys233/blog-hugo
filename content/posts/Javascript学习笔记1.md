@@ -76,7 +76,23 @@ Math.min(...empty); ==> -Infinity
 
 #### 字符串
 
-字符串使用 `''` 或 `""` 包围的任意文本, 如 `abc` , `"xyz"` . 
+字符串使用 `''` 或 `""` 包围的任意文本, 如 `abc` , `"xyz"` .  字符转义与其他语言完全一致, 如 `'I\'m Yaosen!\n'`. 另外,也可以使用十六进制数 `'\x##'` 表示字符串中的字符, 如 `'\x41bc' === 'Abc'`. 也可以用 `'\u####'` 表示字符串中的一个Unicode字符, 如 `'\u4e2d\u6587' === '中文'`. 
+
+如果字符串很长, 写换行符会很烦, 可以使用ES6新标准中的多行字符串表示方法, 用`` `...` `` 括住即可. 同时, 反引号字符串也可以当作模板字符串将变量嵌入至字符串中, 而不用写很多+号.
+
+```javascript
+var name = 'Yaosen';
+var age = 24;
+var message1 = 'Hello, I\'m ' + name + ", I'm " + age + " years old."
+// messagge1 === "Hello, I'm Yaosen, I'm 24 years old."
+var message2 = `Hello, I'm ${name}, I'm ${age} years old.`
+// messagge2 === "Hello, I'm Yaosen, I'm 24 years old."
+var message3 = `Hello, I'm ${name},
+I'm ${age} years old.`
+// message3 === "Hello, I'm Yaosen,\nI'm 24 years old."
+```
+
+
 
 #### 布尔值
 
@@ -99,5 +115,60 @@ true || false // 逻辑或
 
 #### `null` 与 `undefined`
 
-(未完待续)
+`null` 表示空 (void) 之意, 类似C中的 `NULL`, Python中的 `None`. `undefined` 表示未定义. 大部分情况下,都应该用 `null`, 仅在判断函数传参的时候使用 `undefined`.
+
+#### 数组
+
+数组是一个有序的元素序列, 可以包含任意类型元素. 使用整数索引可以访问元素的"引用". 不同于Python, Javascript并不支持能通过方括号索引进行负整数索引与数组切片操作.
+
+```javascript
+var arr = [1, 2, 3.14, 'hello', null, true];
+arr[0]; // 1
+arr[5]; // true
+arr[6]; // undefined
+arr[-1]; // undefined
+arr[0] = 2 // change to [2, 2, 3.14, ...]
+```
+
+#### 对象
+
+Javascript的对象像C++ STL中的 `unordered_map` 或 Python中的 `dict`, 是由一组key-value对组成的无序集合,通过索引键来访问值.
+
+```javascript
+var person = {
+    name: 'Bob',
+    age: 20,
+    tags: ['js', 'web', 'mobile'],
+    city: 'Beijing',
+    hasCar: true,
+    zipcode: null
+};
+```
+
+但不同的是, javascript中对象的键都是字符串类型, 值 (属性) 可以是任意类型. 要访问某个属性的值, 需通过 `.` 来完成.
+
+```javascript
+person.name; // 'Bob'
+person.zipcode; // null
+```
+
+#### 变量
+
+其实以上的代码示例中已经用到了很多变量. Javascript中的变量名可以由**字母, 数字, `$`, `_`**组合而成, 但不能用数字开头. 当然, 变量名也不能是语言自身的关键字. 声明并定义一个变量的**推荐**方式为 `var name = ...;` 形式. 
+
+其实, javascript并不要求变量使用 `var` 声明. 但是, 如果一个变量没有使用 `var`, 那么他将变成一个全局变量 (如 `b` ). 这样会使得同一个页面引入的不同JS文件中的变量相互冲突, 造成不可预知的后果. 因此, 牢记**声明变量的时候应当使用 `var`**. 
+
+```javascript
+var a = 1.23;
+a = 'string';
+b = 'I\'m conflict with other bs'
+```
+
+这个问题实际上是javascript的一个设计缺陷, ECMA在后续规范中推出了strict模式, 在该模式下运行的代码强制通过 `var` 声明变量, 不加 `var` 的变量声明将直接抛出错误. 启用strict模式的方法是在脚本中首行写入:
+
+```javascript
+'use strict';
+```
+
+支持strict模式的浏览器将开启strict模式, 而不支持该模式的浏览器将会把这一行当作一个没有什么意义的普通语句来执行. 为了避免因为粗心大意在声明变量时忽略 `var`, **任何脚本都应该开启strict模式**.
 
