@@ -74,7 +74,7 @@ Math.min(...empty); ==> -Infinity
 */
 ```
 
-#### 字符串
+#### 字符串 (String)
 
 字符串使用 `''` 或 `""` 包围的任意文本, 如 `abc` , `"xyz"` .  字符转义与其他语言完全一致, 如 `'I\'m Yaosen!\n'`. 另外,也可以使用十六进制数 `'\x##'` 表示字符串中的字符, 如 `'\x41bc' === 'Abc'`. 也可以用 `'\u####'` 表示字符串中的一个Unicode字符, 如 `'\u4e2d\u6587' === '中文'`. 
 
@@ -92,7 +92,19 @@ I'm ${age} years old.`
 // message3 === "Hello, I'm Yaosen,\nI'm 24 years old."
 ```
 
+字符串对象的操作类似列表. 通过 `.length` 获得长度, 通过方括号索引获取对应字符. 但是修改 `.length` 虽不会报错, 但是并不能更改字符串长度, 属性值也不会改变. **字符串是不可变的, 对索引赋值不会有任何效果.**
 
+```javascript
+var s = "Hellw!"; // mis-spelled
+s[4] = 'o'; // no effect
+```
+
+个人认为, 字符串操作的丰富与否直接决定了一个语言是否对新手友好, 因为如果打log都很不是很容易, 那么学习曲线就会很陡峭. 因此, 易于学习的Javascript字符串对象有不少成员函数来操作字符串:
+
+- `s.toUpperCase()` : 全部大写, 仅对有大小写关系的字符有效.
+- `s.toLowerCase()` : 全部小写, 仅对有大小写关系的字符有效.
+- `s.indexOf(str)` : 返回指定 `str` 字符串出现的位置, 没找到返回-1.
+- `s.substring(start, end)` : 返回 `[start, end)` 区间的子字符串, 如 `end` 未指定, 默认到字符串结尾.
 
 #### 布尔值
 
@@ -111,18 +123,19 @@ true || false // 逻辑或
 - `==` : 比较时自动转换类型, 可得到 `false == 0` 为 `true` 这样的神奇情况
 - `===` : 比较时不会转换类型,如果数据类型不一致直接 `false`, 类型相同再比较
 
-**这是Javascript的一个设计缺陷, 尽量避免使用 `==`**. 另外, `NaN` 和任何数包括他自己都不想等, 即 `NaN === NaN` 将得到 `false`, 符合数值运算时约定俗称的规矩.
+**这是Javascript的一个设计缺陷, 尽量避免使用 `==`**. 另外, `NaN` 和任何数包括他自己都不想等, 即 `NaN === NaN` 将得到 `false`, 符合数值运算时约定俗称的规矩. 实际上, `===` 当且仅当两边的对象指向相同的数据, 如 `new Number(0) === new Number(0);` 为 `false`.
 
 #### `null` 与 `undefined`
 
 `null` 表示空 (void) 之意, 类似C中的 `NULL`, Python中的 `None`. `undefined` 表示未定义. 大部分情况下,都应该用 `null`, 仅在判断函数传参的时候使用 `undefined`.
 
-#### 数组
+#### 数组 (Array)
 
-数组是一个有序的元素序列, 可以包含任意类型元素. 使用整数索引可以访问元素的"引用". 不同于Python, Javascript并不支持能通过方括号索引进行负整数索引与数组切片操作.
+数组是一个有序的元素序列, 可以包含任意类型元素, 一般使用以下两种方式定义. 使用整数索引可以访问元素的"引用". 不同于Python, Javascript并不支持能通过方括号索引进行负整数索引与数组切片操作.
 
 ```javascript
 var arr = [1, 2, 3.14, 'hello', null, true];
+var arr1 = new Array(1, 2, 3.14, 'hello', null, true);
 arr[0]; // 1
 arr[5]; // true
 arr[6]; // undefined
@@ -130,14 +143,65 @@ arr[-1]; // undefined
 arr[0] = 2 // change to [2, 2, 3.14, ...]
 ```
 
+访问数组的 `.length` 属性可以得到列表长度. 注意: **更改 `.length` 属性会使得数组丢失元素或增加 `undefined` 元素**. 如果你在浏览器中试过, 你会发现似乎显示的是 `empty`. 但其实这是`undefined`. 另外, 除了上面一点外, 不同于字符串的还有, 当索引值越界后, 数组会自动变长,并在中间添加 `undefined`.
+
+![empty和undefined](https://minys-blog.oss-cn-beijing.aliyuncs.com/2020-09-13-163424.png "看似 `empty` 实际 `undefined`")
+
+和字符串类似, 字符串也支持一系列成员函数如下所示. 
+
+- `.indexOf(Object)` : 搜索一个指定元素 `Object` 的下标, 没有找到时返回-1.
+- `Array.slice(start, end)` : 子数组操作. 对应的是字符串的 `substring` 函数, 截取数组的一段元素. 如果不传递参数, 则会截取所有元素, 通常用于复制一个数组. 注意, 这里的复制规则比较复杂, 可以先这么记忆, 但实际上只会真正复制字符串和数字和布尔值, 详见下图, deep表示复制内容, shallow表示只复制一个引用.
+- `push(*arg)` : 可传递任意多参数, 所传递的参数将按照顺序向末尾添加新元素. 该函数返回目标数组的新长度.
+- `pop()` : 把最后一个元素删掉, 返回删除的元素.
+- `unshift(*arg)` : 类似 `push`, 向头部添加元素.
+- `shift()` : 类似 `pop`, 删掉第一个元素, 返回删除的元素.
+- `sort()` : 按照递增字典序排序, 也可以传递一个比较函数, 暂且不提.
+- `reverse()` : 翻转数组顺序.
+- `splice(start, num, *arg)` : 删除+插入. 从 `start` 位置自己开始, 删除 `num` 个元素, 并在这里插入 `arg`. 该函数返回删除的元素.
+- `concat(*arg)` : 当前的 `Array` 和另一个 `Array` 连接起来, 并返回一个新的 `Array`. **注意, 该函数并没有修改当前 `Array`, 而是返回了一个新的 `Array`. 该函数可以接受任意多参数, 如果参数包含数组, 也会将数组拆开加入**.
+- `join(str)` : 将每个元素间用 `str` 连接起来, 然后返回连接后的字符串.
+
+![JS函数处理数组的方式](https://minys-blog.oss-cn-beijing.aliyuncs.com/2020-09-15-164745.jpg "JS函数处理数组的方式")
+
+```javascript
+var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'G'];
+arr.indexOf('G'); // 6, the first appearance
+arr.slice(1,3); // ["B", "C"]
+arr.slice(3); // from arr[3] to end, ["D", "E", "F", "G", "G"]
+arr.slice(); // make a copy, ["A", "B", "C", "D", "E", "F", "G", "G"]
+arr.slice() === arr; // false, not the same object
+
+var arr = ['Microsoft', 'Apple', 'Yahoo', 'AOL', 'Excite', 'Oracle'];
+// 从索引2开始删除3个元素,然后再添加两个元素:
+arr.splice(2, 3, 'Google', 'Facebook'); // 返回删除的元素 ['Yahoo', 'AOL', 'Excite']
+arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
+// 只删除,不添加:
+arr.splice(2, 2); // ['Google', 'Facebook']
+arr; // ['Microsoft', 'Apple', 'Oracle']
+// 只添加,不删除:
+arr.splice(2, 0, 'Google', 'Facebook'); // 返回[],因为没有删除任何元素
+arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
+
+var arr = ['A', 'B', 'C'];
+var added = arr.concat([1, 2, 3]);
+added; // ['A', 'B', 'C', 1, 2, 3]
+arr; // ['A', 'B', 'C']
+var arr = ['A', 'B', 'C'];
+arr.concat(1, 2, [3, 4]); // ['A', 'B', 'C', 1, 2, 3, 4]
+
+var arr = ['A', 'B', 'C', 1, 2, 3];
+arr.join('-'); // 'A-B-C-1-2-3'
+```
+
 #### 对象
 
-Javascript的对象像C++ STL中的 `unordered_map` 或 Python中的 `dict`, 是由一组key-value对组成的无序集合,通过索引键来访问值.
+Javascript的对象像C++ STL中的 `unordered_map` 或 Python中的 `dict`, 是由一组key-value对组成的无序集合,通过索引键来访问值. 键值对末尾除了最后一个外必须加逗号, 如果最后一个也加了逗号, 低版本浏览器有可能会报错. 
 
 ```javascript
 var person = {
     name: 'Bob',
     age: 20,
+    "school-name": 'Tsinghua',
     tags: ['js', 'web', 'mobile'],
     city: 'Beijing',
     hasCar: true,
@@ -145,11 +209,33 @@ var person = {
 };
 ```
 
-但不同的是, javascript中对象的键都是字符串类型, 值 (属性) 可以是任意类型. 要访问某个属性的值, 需通过 `.` 来完成.
+但不同的是, javascript中对象的键都是字符串类型, 值 (属性) 可以是任意类型. 如果属性名包含特殊字符, 则属性名要用单引号或双引号括起来. 要访问某个属性的值, 需通过 `.` 来完成, 如果属性名包括特殊字符则只能通过方括号来访问. 
 
 ```javascript
 person.name; // 'Bob'
 person.zipcode; // null
+person['name']; // 'Bob'
+person['school-name']; // 'Tsinghua'
+```
+
+因为Javascript是动态类型语言, 因此可以动态地添加或删除对象的属性. 但是注意, 如果访问到一个不存在的属性, 将会返回 `undefined`. 检测一个对象是否拥有某个属性可以使用 `in` 操作符, 但 `in` 操作符同样也会对继承而来的属性进行判断, 即有可能这个属性是继承而来的而非它自身的, 如要判断是否是其自身的属性, 需要用 `hasOwnProperty()`.
+
+```javascript
+var xiaoming = {
+    name: '小明'
+};
+xiaoming.age; // undefined
+xiaoming.age = 18; // 新增一个age属性
+xiaoming.age; // 18
+delete xiaoming.age; // 删除age属性
+xiaoming.age; // undefined
+delete xiaoming['name']; // 删除name属性
+xiaoming.name; // undefined
+delete xiaoming.school; // 删除一个不存在的school属性也不会报错
+'name' in xiaoming; // true
+'school' in xiaoming; // false
+'toString' in xiaoming; // true
+xiaoming.hasOwnProperty('toString'); // false
 ```
 
 #### 变量
@@ -172,3 +258,6 @@ b = 'I\'m conflict with other bs'
 
 支持strict模式的浏览器将开启strict模式, 而不支持该模式的浏览器将会把这一行当作一个没有什么意义的普通语句来执行. 为了避免因为粗心大意在声明变量时忽略 `var`, **任何脚本都应该开启strict模式**.
 
+## 阶段总结
+
+这一块讲了基本的javascript的内置类型和基本的语法, 记忆的东西偏多, 基本没有需要重点理解的地方. 可以看到内容也不是很多, 因此说学习javascript学习曲线很平缓. 但是, 易学并不代表易写, 也不表示轻松就能写好, 还需要多多努力.
