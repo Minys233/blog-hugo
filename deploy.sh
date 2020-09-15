@@ -7,6 +7,7 @@ rm **/.DS_Store
 hugo -t meme # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
+echo "Go to public submodule"
 cd public
 # Add changes to git.
 git add .
@@ -19,11 +20,14 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
+echo "Push public"
 git push origin master
 
 # Come Back up to the Project Root
+echo "Back to main module"
 cd ..
 git add .
 git commit -m "$msg"
+echo "Push main module"
 git push
 
