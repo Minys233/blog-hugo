@@ -2,7 +2,7 @@
 title: "Coding Tricks - Python"
 summary: "Some simple tricks and syntatic"
 date: 2020-09-16T16:16:40+08:00
-draft: true
+draft: false
 katex: true
 tags:
 - Python
