@@ -1,6 +1,6 @@
 ---
 title: "Javascript学习笔记 (1)"
-summary: "Javascript学习笔记"
+summary: "Javascript学习笔记系列: 基本类型和语句"
 date: 2020-09-13T00:15:18+08:00
 draft: false
 katex: true
